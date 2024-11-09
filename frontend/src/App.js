@@ -1,23 +1,30 @@
-// src/App.js
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import SignUp from './components/SignUp';
+import { BrowserRouter as Router, Route, Routes, useParams } from 'react-router-dom';
+import React, { useState } from 'react';
+import Register from './components/Register';
 import Login from './components/Login';
-import Dashboard from './components/Dashboard';
+import ChatRoomList from './components/ChatRoomList';
+import Chat from './components/Chat';
+import CreateChatRoom from './components/CreateChatRoom';
 
-function App() {
-  return (
-    <Router>
-      <div>
-        <h1>Social Media Dashboard</h1>
-        <Routes>
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-        </Routes>
-      </div>
-    </Router>
-  );
-}
+const ChatWrapper = ({ token }) => {
+    const { roomId } = useParams();
+    return <Chat token={token} roomId={roomId} />;
+};
+
+const App = () => {
+    const [token, setToken] = useState(null);
+
+    return (
+        <Router>
+            <Routes>
+                <Route path="/register" element={<Register />} />
+                <Route path="/login" element={<Login setToken={setToken} />} />
+                <Route path="/chat-rooms" element={<ChatRoomList token={token} />} />
+                <Route path="/chat/:roomId" element={<ChatWrapper token={token} />} />
+                <Route path="/create-chat-room" element={<CreateChatRoom token={token} />} />
+            </Routes>
+        </Router>
+    );
+};
 
 export default App;
