@@ -25,7 +25,7 @@ const Login = () => {
         <div className="login-container">
             <form onSubmit={handleSubmit} className="login-form">
                 <h2>Login</h2>
-                {error && <p className="error-message">{error}</p>}
+                {error && <p className="error-banner">{error}</p>}
                 <label>
                     Username:
                     <input type="text" value={username} onChange={(e) => setUsername(e.target.value)}/>

@@ -30,7 +30,7 @@ const Register = () => {
         <div className="register-container">
             <form onSubmit={handleSubmit} className="register-form">
                 <h2>Register</h2>
-                {error && <p className="error-message">{error}</p>}
+                {error && <p className="error-banner">{error}</p>}
                 {success && <div className="success-banner">{success}</div>}
                 <label>
                     Username:
