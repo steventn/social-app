@@ -5,15 +5,15 @@
     <title>Chat Room</title>
 </head>
 <body>
-    {% if user.is_authenticated %}
-        <p>Welcome, {{ user.username }}!</p>
-        <form method="post" action="{% url 'logout' %}">
-            {% csrf_token %}
-            <button type="submit">Logout</button>
-        </form>
-    {% else %}
-        <p>You are not logged in. <a href="{% url 'login' %}">Login</a></p>
-    {% endif %}
+<!--    {% if user.is_authenticated %}-->
+<!--        <p>Welcome, {{ user.username }}!</p>-->
+<!--        <form method="post" action="{% url 'logout' %}">-->
+<!--            {% csrf_token %}-->
+<!--            <button type="submit">Logout</button>-->
+<!--        </form>-->
+<!--    {% else %}-->
+<!--        <p>You are not logged in. <a href="{% url 'login' %}">Login</a></p>-->
+<!--    {% endif %}-->
 
     <textarea id="chat-log" cols="100" rows="20"></textarea><br>
     <input id="chat-message-input" type="text" size="100"><br>
@@ -24,6 +24,13 @@
 
         const chatSocket = new WebSocket(
             'ws://'
+            + window.location.host
+            + '/ws/chat/'
+            + roomName
+            + '/'
+        );
+
+        console.log('ws://'
             + window.location.host
             + '/ws/chat/'
             + roomName
