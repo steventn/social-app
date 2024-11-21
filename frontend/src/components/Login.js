@@ -1,8 +1,7 @@
-// frontend/src/components/Login.js
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { loginUser } from '../services/api';
-import './Login.css'; // Import the CSS file for styling
+import './Login.css';
 
 const Login = () => {
     const [username, setUsername] = useState('');
@@ -29,13 +28,14 @@ const Login = () => {
                 {error && <p className="error-message">{error}</p>}
                 <label>
                     Username:
-                    <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+                    <input type="text" value={username} onChange={(e) => setUsername(e.target.value)}/>
                 </label>
                 <label>
                     Password:
-                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
                 </label>
                 <button type="submit">Login</button>
+                <p>Don't have an account? <Link to="/register">Register here</Link></p>
             </form>
         </div>
     );
