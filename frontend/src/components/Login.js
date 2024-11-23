@@ -15,6 +15,8 @@ const Login = () => {
             const response = await loginUser({ username, password });
             if (response.status === 200) {
                 navigate('/home');
+                localStorage.setItem("access_token", response.data.access);
+                localStorage.setItem("refresh_token", response.data.refresh);
             }
         } catch (error) {
             setError(error.response?.data?.detail || 'Login failed');

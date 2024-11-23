@@ -5,6 +5,8 @@ from .models import CustomUser
 
 class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
+    location = serializers.CharField(required=False, allow_blank=True)
+    preferences = serializers.JSONField(required=False)
 
     class Meta:
         model = CustomUser
@@ -15,8 +17,8 @@ class UserSerializer(serializers.ModelSerializer):
             username=validated_data['username'],
             password=validated_data['password'],
             email=validated_data['email'],
-            location=validated_data.get('location'),
-            preferences=validated_data.get('preferences')
+            location=validated_data.get('location', ''),
+            preferences=validated_data.get('preferences', {})
         )
         return user
 
