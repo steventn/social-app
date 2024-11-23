@@ -40,6 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'chat',
+    'courts',
+    'game',
+    'groups',
+    'users',
+    'social_app',
     "corsheaders",
     "rest_framework",
 ]
@@ -145,3 +150,5 @@ LOGOUT_REDIRECT_URL = '/chat/'
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
 )
+
+AUTH_USER_MODEL = 'users.CustomUser'
