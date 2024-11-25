@@ -4,6 +4,7 @@ import Nearby from './Nearby';
 import Groups from './Groups';
 import Profile from './Profile';
 import './HomeScreen.css';
+import {Link} from "react-router-dom";
 
 const HomeScreen = () => {
     const [selectedView, setSelectedView] = useState('Schedule');
@@ -25,6 +26,9 @@ const HomeScreen = () => {
 
     return (
         <div className="home-screen">
+            <nav>
+                <Link to="/logout">Logout</Link>
+            </nav>
             <div className="nav-bar">
                 <button onClick={() => setSelectedView('Schedule')}>Schedule</button>
                 <button onClick={() => setSelectedView('Nearby')}>Nearby</button>

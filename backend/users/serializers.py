@@ -1,4 +1,3 @@
-from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate
 from rest_framework import serializers
 from .models import CustomUser
@@ -29,9 +28,8 @@ class LoginSerializer(serializers.Serializer):
     def validate(self, data):
         user = authenticate(username=data['username'], password=data['password'])
         if user and user.is_active:
-            refresh = RefreshToken.for_user(user)
-            return {
-                'refresh': str(refresh),
-                'access': str(refresh.access_token),
-            }
+            user = authenticate(**data)
+            if user and user.is_active:
+                return user
+            raise serializers.ValidationError("Invalid credentials")
         raise serializers.ValidationError("Invalid credentials")
