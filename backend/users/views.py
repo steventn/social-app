@@ -69,16 +69,10 @@ class AddPlayerByUserIdView(APIView):
             logger.error(f"Friendship already exists between user {request.user.id} and {user_id}")
             return Response({"error": "Friendship already exists"}, status=status.HTTP_400_BAD_REQUEST)
 
-class CheckFriendshipView(APIView):
+class CheckFriendsView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, *args, **kwargs):
-        user_id = request.query_params.get('user_id')
-        if not user_id:
-            return Response({"error": "user_id is required"}, status=status.HTTP_400_BAD_REQUEST)
-        try:
-            friend = CustomUser.objects.get(id=user_id)
-            exists = Friendship.objects.filter(user=request.user, friend=friend).exists()
-            return Response({"exists": exists}, status=status.HTTP_200_OK)
-        except CustomUser.DoesNotExist:
-            return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+        friends = Friendship.objects.filter(user=request.user).select_related('friend')
+        friends_list = [{"id": friend.friend.id, "username": friend.friend.username} for friend in friends]
+        return Response({"friends": friends_list}, status=status.HTTP_200_OK)
