@@ -3,8 +3,12 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework_simplejwt.tokens import RefreshToken
+from django.db import IntegrityError
+import logging
 from .serializers import UserSerializer, LoginSerializer
-from .models import CustomUser
+from .models import CustomUser, Friendship
+
+logger = logging.getLogger(__name__)
 
 
 class UserRegistrationView(APIView):
@@ -52,8 +56,29 @@ class AddPlayerByUserIdView(APIView):
 
     def post(self, request, *args, **kwargs):
         user_id = request.data.get('user_id')
+        if not user_id:
+            return Response({"error": "user_id is required"}, status=status.HTTP_400_BAD_REQUEST)
         try:
-            user = CustomUser.objects.get(id=user_id)
-            return Response(UserSerializer(user).data, status=status.HTTP_200_OK)
+            friend = CustomUser.objects.get(id=user_id)
+            Friendship.objects.create(user=request.user, friend=friend)
+            return Response({"message": f"Friend '{friend.username}' added successfully"}, status=status.HTTP_201_CREATED)
+        except CustomUser.DoesNotExist:
+            logger.error(f"User with id {user_id} does not exist")
+            return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+        except IntegrityError:
+            logger.error(f"Friendship already exists between user {request.user.id} and {user_id}")
+            return Response({"error": "Friendship already exists"}, status=status.HTTP_400_BAD_REQUEST)
+
+class CheckFriendshipView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        user_id = request.query_params.get('user_id')
+        if not user_id:
+            return Response({"error": "user_id is required"}, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            friend = CustomUser.objects.get(id=user_id)
+            exists = Friendship.objects.filter(user=request.user, friend=friend).exists()
+            return Response({"exists": exists}, status=status.HTTP_200_OK)
         except CustomUser.DoesNotExist:
             return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)

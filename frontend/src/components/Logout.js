@@ -1,19 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Logout = () => {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    handleLogout();
-  }, []);
-
-  const handleLogout = () => {
+  const handleLogout = useCallback(() => {
     localStorage.removeItem("access_token");
     localStorage.removeItem("refresh_token");
-
     navigate("/login");
-  };
+  }, [navigate]);
+
+  useEffect(() => {
+    handleLogout();
+  }, [handleLogout]);
 
   return (
     <div>

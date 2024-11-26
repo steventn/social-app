@@ -8,8 +8,8 @@ const AddPlayer = () => {
   const handleAddPlayer = async () => {
     try {
       const intUserId = parseInt(userId, 10);
-      const response = await addPlayer({ intUserId });
-      setMessage(`Player added: ${response.data.username}`);
+      const response = await addPlayer({ 'user_id': intUserId });
+      setMessage(`${response.data.message}`);
     } catch (err) {
       setMessage("Error adding player");
     }
