@@ -1,10 +1,12 @@
 import React from 'react';
+import CreateGame from "./CreateGame";
+import DisplaySchedule from "./DisplaySchedule";
 
 const Schedule = () => {
     return (
         <div>
-            <h2>Schedule</h2>
-            <p>Calendar view goes here.</p>
+            < DisplaySchedule />
+            < CreateGame />
         </div>
     );
 };
