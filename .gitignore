@@ -2,3 +2,5 @@
 backend/social_app/__pycache__
 backend/chat/__pycache__
 .DS_Store
+*.pyc
+frontend/.env
