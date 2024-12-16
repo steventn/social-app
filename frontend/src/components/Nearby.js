@@ -1,12 +1,12 @@
 import React from "react";
 import AddPlayer from "./AddPlayer";
-import Map from "./Map";
+import MapComponent from "./Map";
 
 const NearbyTab = () => (
   <div>
     <h2>Nearby Players</h2>
     <AddPlayer />
-    <Map />
+    <MapComponent />
   </div>
 );
 
