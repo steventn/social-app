@@ -6,3 +6,7 @@ backend/chat/__pycache__
 frontend/.env
 /frontend/node_modules
 /frontend
+/backend/groups/migrations
+/backend/courts/migrations
+/backend/game/migrations
+/backend/users/migrations
