@@ -8,6 +8,7 @@ const api = axios.create({
 
 export const registerUser = (data) => api.post('users/register/', data);
 export const loginUser = (data) => api.post('users/login/', data);
+export const fetchProfile = () => api.get('users/profile/', { headers: getAuthHeaders() });
 export const addPlayer = (data) => api.post('users/add-player/', data, { headers: getAuthHeaders(), });
 export const fetchFriends = () => api.get('users/get-friends/', { headers: getAuthHeaders() });
 export const createGame = (data) => api.post('games/create/', data, { headers: getAuthHeaders(), });
