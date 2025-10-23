@@ -6,27 +6,6 @@ import Profile from './Profile';
 import './HomeScreen.css';
 import { Link } from "react-router-dom";
 
-// A simple component to render the modern 'No Games Scheduled' state
-const ScheduleEmptyState = () => (
-    <div className="schedule-view">
-        <h2 className="no-games-header">No games scheduled.</h2>
-
-        <div className="empty-state-card">
-            {/* Replace this text '🎾' with a proper icon/illustration in a real app */}
-            <div className="empty-state-icon">🎾</div>
-
-            <h3>Ready to Play?</h3>
-            <p>Create the first match!</p>
-
-            <button className="create-game-btn">
-                {/* Plus Icon */}
-                <span style={{ fontSize: '1.2em' }}>+</span>
-                Create Game
-            </button>
-        </div>
-    </div>
-);
-
 
 const HomeScreen = () => {
     // Note: The 'selectedView' state controls both the content and the active tab style
@@ -50,7 +29,7 @@ const HomeScreen = () => {
             case 'Profile':
                 return <Profile />;
             default:
-                return <ScheduleEmptyState />;
+                return <Schedule />;
         }
     };
 

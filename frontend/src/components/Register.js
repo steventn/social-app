@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { registerUser } from '../services/api';
+import { loginUser } from '../services/api';
 import './Register.css';
 
 const Register = () => {
@@ -17,11 +18,14 @@ const Register = () => {
             const response = await registerUser({ username, password, email });
             if (response.status === 201) {
                 setSuccess('Account created successfully! Logging in...');
-                setTimeout(() => {
-                    navigate('/home');
-                    localStorage.setItem("access_token", response.data.access);
-                    localStorage.setItem("refresh_token", response.data.refresh);
-                }, 3000);
+                const login_response = await loginUser({ username, password });
+                if (login_response.status === 200) {
+                    setTimeout(() => {
+                        navigate('/home');
+                        localStorage.setItem("access_token", login_response.data.access);
+                        localStorage.setItem("refresh_token", login_response.data.refresh);
+                    }, 2500);
+                }
             }
         } catch (error) {
             setError(error.response?.data?.detail || 'Registration failed');

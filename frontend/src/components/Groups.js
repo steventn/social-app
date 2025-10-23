@@ -1,9 +1,9 @@
 import React, { } from 'react';
+import AddPlayer from "./AddPlayer";
 
 const Groups = () => {
-
     return (
-        <h2>Groups</h2>
+        <AddPlayer />
     );
 };
 
