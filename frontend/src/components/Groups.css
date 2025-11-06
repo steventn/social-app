@@ -1,101 +1,129 @@
-/* src/pages/Groups/Groups.css */
+/* src/pages/Groups/Groups.css - Adapted for Global Style Consistency */
 
-.groups-page {
-    /* Basic Page Layout/Container */
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f7f7f7; /* Light grey background for the page */
-    min-height: 100vh;
-    position: relative; /* Needed for positioning the FAB */
+/* --- Page Layout (Replaced .groups-page with existing conventions) --- */
+/* The layout should largely be handled by .home-screen and .view-container from the global CSS. */
+/* If this component is rendered inside .view-container: */
+.groups-view {
+    /* Use for specific padding/spacing within the view-container */
+    padding-top: 20px; /* Consistent with .schedule-view */
+    /* Remove redundant max-width, margin, min-height, and background-color */
+    /* The global layout handles the page structure */
 }
 
-/* Page Header */
-.page-header {
+/* --- Page Header (Assuming the component does not re-implement the top-header) --- */
+/* If the component *does* re-implement a page header: */
+.groups-page-header {
+    /* Aligns with .schedule-view's heading style if needed */
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--secondary-text-color);
+    margin-bottom: 30px;
+}
+
+/* --- Group List Section --- */
+.group-list-section h3 {
+    font-size: 1.2em;
+    color: var(--header-color);
+    margin-bottom: 15px;
+    font-weight: 700; /* Increased weight for consistency */
+}
+
+/* --- Empty State Card (Adapted from .empty-state-card) --- */
+.groups-empty-state-card {
+    /* Reusing the styling from the existing empty state for consistency */
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 90%;
+    max-width: 350px;
+    margin: 50px auto;
+    padding: 40px 20px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: var(--card-shadow);
+}
+
+.groups-empty-state-card h3 {
+    font-size: 1.4em;
+    font-weight: 700;
+    color: var(--header-color);
+    margin: 10px 0 5px;
+}
+
+.groups-empty-state-card p {
+    color: var(--secondary-text-color);
     margin-bottom: 25px;
 }
 
-.page-header h2 {
-    font-size: 1.8em;
-    color: #2c3e50;
-    margin: 0;
-}
-
-.logout-btn {
-    background: none;
-    border: none;
-    color: #2980b9; /* Blue color for links/actions */
-    cursor: pointer;
-    font-size: 0.9em;
-    font-weight: 500;
-}
-
-/* Add Player Section */
-.add-player-section {
-    padding: 15px;
-    background-color: #fff;
-    border-radius: 10px;
+.groups-empty-state-icon {
+    font-size: 3em;
+    color: var(--primary-color);
     margin-bottom: 20px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
-.add-player-section label {
-    display: block;
-    font-size: 0.9em;
-    font-weight: 500;
-    color: #555;
-    margin-bottom: 8px;
-}
-
-.add-player-section .input-row {
-    display: flex;
-    gap: 10px;
-}
-
-.add-player-section input[type="text"] {
-    flex-grow: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1em;
-}
-
-.add-player-section button {
-    padding: 10px 15px;
-    background-color: #27ae60; /* Green primary button */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: 600;
-}
-
-/* Group List Section */
-.group-list-section h3 {
-    font-size: 1.2em;
-    color: #333;
-    margin-bottom: 15px;
-}
-
-/* Floating Action Button (FAB) */
+/* --- Floating Action Button (FAB) for Create Group --- */
 .fab-button {
     position: fixed;
-    bottom: 80px; /* Adjust based on your bottom navigation bar */
-    right: 20px;
-    width: 60px;
-    height: 60px;
+    /* Aligned with the bottom of the content, above the 70px nav-bar + some spacing */
+    bottom: 90px;
+    right: 16px; /* Consistent with the padding of .view-container */
+    width: 55px;
+    height: 55px;
     border-radius: 50%;
-    background-color: #3498db; /* Blue FAB */
+    background-color: var(--primary-color); /* Using the primary color */
     color: white;
     font-size: 2em;
     border: none;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
     cursor: pointer;
+    /* Using a shadow similar to the create-game-btn's color shadow */
+    box-shadow: 0 4px 8px rgba(156, 211, 73, 0.4);
     z-index: 10;
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: background-color 0.3s;
+}
+
+.fab-button:hover {
+    /* Consistent hover color */
+    background-color: #8ac138;
+}
+
+/* --- Create Form Styles (For the form component you provided previously) --- */
+
+.create-form-container {
+    /* Styles for containing the form component */
+    padding-top: 20px;
+    /* Use standard padding or center the form */
+}
+
+/* Button to toggle the form (if used similarly to create-game-btn) */
+.create-group-toggle-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 25px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    transition: background-color 0.3s;
+    box-shadow: 0 4px 8px rgba(156, 211, 73, 0.4);
+}
+
+.create-group-toggle-btn:hover {
+    background-color: #8ac138;
+}
+
+.create-form-container h2 {
+    font-size: 1.6em;
+    font-weight: 700;
+    color: var(--header-color);
+    margin-top: 15px;
+    margin-bottom: 20px;
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { createGame } from "../services/api";
-import './CreateGame.css';
+import './CreateForm.css';
 
 const CreateGame = () => {
     const [title, setTitle] = useState('');
@@ -27,7 +27,7 @@ const CreateGame = () => {
     };
 
     return (
-        <div className="create-game-container">
+        <div className="create-form-container">
             <button onClick={() => setShowForm(!showForm)}>
                 {showForm ? 'Hide Create Game Form' : 'Create Game'}
             </button>

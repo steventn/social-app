@@ -17,7 +17,7 @@ const AddPlayer = () => {
 
   return (
     <div>
-      <h3>Add Player by User ID</h3>
+      <h3>Add Friend by User ID</h3>
       <input
         type="text"
         placeholder="Enter User ID"

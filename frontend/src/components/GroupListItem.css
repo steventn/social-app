@@ -1,22 +1,23 @@
-/* src/components/groups/GroupListItem.css */
+/* src/components/groups/GroupListItem.css - Component Styling */
 
-.group-list-item {
-    /* Layout */
+.group-item-card {
+    /* Layout and Spacing */
     display: flex;
     align-items: center;
-    padding: 12px 15px;
-    margin-bottom: 8px;
+    gap: 12px;
+    padding: 15px 20px;
 
     /* Appearance */
-    background-color: #ffffff; /* White background for list items */
+    background-color: white;
     border-radius: 10px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--card-shadow); /* <-- Uses Global Variable */
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: transform 0.2s ease-in-out; /* <-- Uses Consistent Hover Effect */
+    margin-bottom: 15px; /* Spacing between items */
 }
 
-.group-list-item:hover {
-    background-color: #f0f0f0; /* Slight highlight on hover */
+.group-item-card:hover {
+    transform: translateY(-2px); /* Consistent card lift effect */
 }
 
 .group-icon {
@@ -24,19 +25,20 @@
     height: 45px;
     border-radius: 50%;
     object-fit: cover;
-    background-color: #e0f2f1; /* Light teal placeholder color */
+    background-color: var(--primary-color); /* <-- Uses Global Variable */
+    flex-shrink: 0;
 }
 
 /* Group Details (Name and Last Message) */
 .group-details {
-    flex-grow: 1; /* Takes up available space */
-    min-width: 0; /* Ensures text truncation works */
+    flex-grow: 1;
+    min-width: 0;
 }
 
 .group-name {
     font-size: 1.1em;
     font-weight: 600;
-    color: #333;
+    color: var(--header-color); /* <-- Uses Global Variable */
     margin: 0 0 2px 0;
     white-space: nowrap;
     overflow: hidden;
@@ -45,9 +47,17 @@
 
 .last-message {
     font-size: 0.85em;
-    color: #777;
+    color: var(--secondary-text-color); /* <-- Uses Global Variable */
     margin: 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.group-action-icon {
+    /* Style for the chevron or arrow */
+    font-size: 1.2em;
+    color: var(--primary-color);
+    margin-left: 15px;
+    flex-shrink: 0;
 }

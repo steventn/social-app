@@ -12,10 +12,42 @@ const DUMMY_GROUPS = [
   { id: 4, name: 'Family Fun Group', lastMessage: 'Got ah neo new paddles' },
 ];
 
+const createGroup = async (newGroup) => {
+    // Replace this with your actual API call (e.g., using axios or fetch)
+    console.log("Simulating API call to create group:", newGroup);
+    return { data: newGroup, status: 201 };
+};
+
 const Groups = () => {
+  const [name, setName] = useState(''); // Changed from 'title'
+  const [description, setDescription] = useState(''); // New field
+  const [successMessage, setSuccessMessage] = useState('');
+  const [showForm, setShowForm] = useState(false);
   const [groups, setGroups] = useState([]);
   const [loading, setLoading] = useState(true);
   const [userIdInput, setUserIdInput] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // Updated data structure for a Group
+    const newGroup = { name, description };
+
+    try {
+        // Updated API function call
+        const response = await createGroup(newGroup);
+
+        console.log('Group created:', response.data);
+        setSuccessMessage('Group created successfully!');
+
+        // Reset form fields
+        setName('');
+        setDescription('');
+
+    } catch (error) {
+        console.error('There was an error creating the group!', error);
+        // Optionally, set an error message here
+    }
+  };
 
   // Simulating data fetching from the Django API
   useEffect(() => {
@@ -53,33 +85,63 @@ const Groups = () => {
   }
 
   return (
-    <div className="groups-page">
-      <header className="page-header">
-        <h2>Groups</h2>
-      </header>
+    <div>
+        <div className="groups-page">
+          <header className="page-header">
+            <h2>Groups</h2>
+          </header>
 
-      {/* 🤝 Add Player by User ID Section */}
-      <AddPlayer />
+          {/* 🤝 Add Player by User ID Section */}
+          <AddPlayer />
 
+          <hr />
 
-      <hr />
+          {/* 👥 Your Groups List */}
+          <div className="group-list">
+            {groups.map(group => (
+            //                 <div key={group.id} className="group-item-card" onClick={() => navigateToGroup(group.id)}>
+                <div key={group.id} className="group-item-card">
+                    <div className="group-info">
+                        <h4>{group.name}</h4>
+                        <p>{group.memberCount} members</p>
+                    </div>
+                </div>
+            ))}
+          </div>
 
-      {/* 👥 Your Groups List */}
-      <section className="group-list-section">
-        <h3>Your Groups ({groups.length})</h3>
-        <div className="group-list-container">
-          {groups.map((group) => (
-            <GroupListItem key={group.id} group={group} onClick={handleGroupClick} />
-          ))}
+          <div className="create-form-container">
+            <button onClick={() => setShowForm(!showForm)}>
+                {showForm ? 'Hide Create Group Form' : 'Create Group'}
+            </button>
+            {showForm && (
+                <div>
+                    <h2>Create a New Group</h2>
+                    <form onSubmit={handleSubmit}>
+                        <div>
+                            <label>Group Name:</label>
+                            <input
+                                type="text"
+                                value={name} // State variable: name
+                                onChange={(e) => setName(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label>Description:</label>
+                            <textarea // Using textarea for description
+                                value={description} // State variable: description
+                                onChange={(e) => setDescription(e.target.value)}
+                                required
+                            />
+                        </div>
+
+                        <button type="submit">Create Group</button>
+                    </form>
+                    {successMessage && <p className="success-banner">{successMessage}</p>}
+                </div>
+                )}
+          </div>
         </div>
-      </section>
-
-      {/* ➕ Floating Action Button (FAB) */}
-      <button className="fab-button" onClick={handleCreateNewGroup}>
-        +
-      </button>
-
-      {/* Note: The bottom Navigation Bar would typically be a separate layout component */}
     </div>
   );
 };
