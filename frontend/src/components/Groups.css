@@ -1,0 +1,101 @@
+/* src/pages/Groups/Groups.css */
+
+.groups-page {
+    /* Basic Page Layout/Container */
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f7f7f7; /* Light grey background for the page */
+    min-height: 100vh;
+    position: relative; /* Needed for positioning the FAB */
+}
+
+/* Page Header */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.page-header h2 {
+    font-size: 1.8em;
+    color: #2c3e50;
+    margin: 0;
+}
+
+.logout-btn {
+    background: none;
+    border: none;
+    color: #2980b9; /* Blue color for links/actions */
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+/* Add Player Section */
+.add-player-section {
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.add-player-section label {
+    display: block;
+    font-size: 0.9em;
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.add-player-section .input-row {
+    display: flex;
+    gap: 10px;
+}
+
+.add-player-section input[type="text"] {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.add-player-section button {
+    padding: 10px 15px;
+    background-color: #27ae60; /* Green primary button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* Group List Section */
+.group-list-section h3 {
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Floating Action Button (FAB) */
+.fab-button {
+    position: fixed;
+    bottom: 80px; /* Adjust based on your bottom navigation bar */
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #3498db; /* Blue FAB */
+    color: white;
+    font-size: 2em;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

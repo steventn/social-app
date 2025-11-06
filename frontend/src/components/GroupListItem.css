@@ -1,0 +1,53 @@
+/* src/components/groups/GroupListItem.css */
+
+.group-list-item {
+    /* Layout */
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    margin-bottom: 8px;
+
+    /* Appearance */
+    background-color: #ffffff; /* White background for list items */
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.group-list-item:hover {
+    background-color: #f0f0f0; /* Slight highlight on hover */
+}
+
+.group-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #e0f2f1; /* Light teal placeholder color */
+}
+
+/* Group Details (Name and Last Message) */
+.group-details {
+    flex-grow: 1; /* Takes up available space */
+    min-width: 0; /* Ensures text truncation works */
+}
+
+.group-name {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 2px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.last-message {
+    font-size: 0.85em;
+    color: #777;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
