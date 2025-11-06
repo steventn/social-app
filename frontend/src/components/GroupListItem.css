@@ -1,0 +1,63 @@
+/* src/components/groups/GroupListItem.css - Component Styling */
+
+.group-item-card {
+    /* Layout and Spacing */
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px 20px;
+
+    /* Appearance */
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: var(--card-shadow); /* <-- Uses Global Variable */
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out; /* <-- Uses Consistent Hover Effect */
+    margin-bottom: 15px; /* Spacing between items */
+}
+
+.group-item-card:hover {
+    transform: translateY(-2px); /* Consistent card lift effect */
+}
+
+.group-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: var(--primary-color); /* <-- Uses Global Variable */
+    flex-shrink: 0;
+}
+
+/* Group Details (Name and Last Message) */
+.group-details {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.group-name {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--header-color); /* <-- Uses Global Variable */
+    margin: 0 0 2px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.last-message {
+    font-size: 0.85em;
+    color: var(--secondary-text-color); /* <-- Uses Global Variable */
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.group-action-icon {
+    /* Style for the chevron or arrow */
+    font-size: 1.2em;
+    color: var(--primary-color);
+    margin-left: 15px;
+    flex-shrink: 0;
+}
